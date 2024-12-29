@@ -13,11 +13,12 @@ const { width: screenWidth } = Dimensions.get('window');
 
 const SimpleCarousel = () => {
   const images = [
-    'https://via.placeholder.com/600x300',
-    'https://via.placeholder.com/600x300/FF0000',
-    'https://via.placeholder.com/600x300/00FF00',
-    'https://via.placeholder.com/600x300/0000FF',
+   "image 1",
+    "image 2",
+     "image 3",
+      "image 4"
   ];
+  const color=['red','green','blue','yellow']
 
   const scrollViewRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -35,8 +36,8 @@ const SimpleCarousel = () => {
         ref={scrollViewRef}
         showsHorizontalScrollIndicator={false}
       >
-        {images.map((uri, index) => (
-          <Image key={index} source={{ uri }} style={{ width: screenWidth, height: 200 }} />
+        {images.map((title, index) => (
+          <View key={index}  style={{ width: screenWidth, height: 200 ,backgroundColor:color[index]}} />
         ))}
       </ScrollView>
 
