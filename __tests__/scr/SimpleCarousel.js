@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import {
   View,
   ScrollView,
-  Image,
   TouchableOpacity,
   Text,
   Dimensions,
@@ -12,13 +11,8 @@ import {
 const { width: screenWidth } = Dimensions.get('window');
 
 const SimpleCarousel = () => {
-  const images = [
-   "image 1",
-    "image 2",
-     "image 3",
-      "image 4"
-  ];
-  const color=['red','green','blue','yellow']
+  const images = ['Image 1', 'Image 2', 'Image 3', 'Image 4'];
+  const colors = ['red', 'green', 'blue', 'yellow'];
 
   const scrollViewRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,6 +22,12 @@ const SimpleCarousel = () => {
     setCurrentIndex(index);
   };
 
+  const handleScroll = (event) => {
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const newIndex = Math.round(offsetX / screenWidth);
+    setCurrentIndex(newIndex);
+  };
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <ScrollView
@@ -35,9 +35,22 @@ const SimpleCarousel = () => {
         pagingEnabled
         ref={scrollViewRef}
         showsHorizontalScrollIndicator={false}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
       >
         {images.map((title, index) => (
-          <View key={index}  style={{ width: screenWidth, height: 200 ,backgroundColor:color[index]}} />
+          <View
+            key={index}
+            style={{
+              width: screenWidth,
+              height: 200,
+              backgroundColor: colors[index],
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text style={{ color: 'white', fontSize: 18 }}>{title}</Text>
+          </View>
         ))}
       </ScrollView>
 
@@ -48,7 +61,9 @@ const SimpleCarousel = () => {
           <Text style={styles.navText}>{'<'}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => scrollToIndex(Math.min(currentIndex + 1, images.length - 1))}
+          onPress={() =>
+            scrollToIndex(Math.min(currentIndex + 1, images.length - 1))
+          }
         >
           <Text style={styles.navText}>{'>'}</Text>
         </TouchableOpacity>
