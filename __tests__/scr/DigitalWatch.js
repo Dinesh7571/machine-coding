@@ -9,11 +9,16 @@ const DigitalWatch = () => {
     const updateDateTime = () => {
       const currentTime = new Date();
 
-      // Format time
-      const hours = currentTime.getHours().toString().padStart(2, '0');
+      // Format time with AM/PM
+      let hours = currentTime.getHours();
       const minutes = currentTime.getMinutes().toString().padStart(2, '0');
       const seconds = currentTime.getSeconds().toString().padStart(2, '0');
-      setTime(`${hours}:${minutes}:${seconds}`);
+      const period = hours >= 12 ? 'PM' : 'AM';
+
+      // Convert to 12-hour format
+      hours = hours % 12 || 12; // 0 is converted to 12
+      const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes}:${seconds} ${period}`;
+      setTime(formattedTime);
 
       // Format date
       const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'linear-gradient(to bottom, #000428, #004e92)', // Simulated gradient
+    backgroundColor: '#004e92', 
   },
   timeText: {
     fontSize: 60,
