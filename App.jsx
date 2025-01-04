@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
   <NavigationContainer>
-     <Stack.Navigator>
+     <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName='Home'>
       <Stack.Screen name="Carousel" component={SimpleCarousel} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Counterdowntimer" component={Countdowntimer} />
