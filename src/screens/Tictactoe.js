@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native'
 import React, { useState } from 'react'
 
 const Tictactoe = () => {
@@ -14,6 +14,11 @@ const Tictactoe = () => {
     setIsXNext(!isXNext);
   };
 
+  const handleReset = () => {
+    setBoard(Array(9).fill(null));
+    setIsXNext(true);
+  };
+
   const renderCell = (index) => (
     <TouchableOpacity style={styles.cell} onPress={() => handleCellPress(index)}>
       <Text style={styles.cellText}>{board[index]}</Text>
@@ -26,6 +31,7 @@ const Tictactoe = () => {
       <View style={styles.board}>
         {board.map((_, index) => renderCell(index))}
       </View>
+      <Button title="Reset" onPress={handleReset} />
     </View>
   )
 }
