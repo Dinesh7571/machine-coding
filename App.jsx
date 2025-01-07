@@ -6,6 +6,7 @@ import DigitalWatch from './src/screens/DigitalWatch'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from './src/screens/Home'
+import Tictactoe from './src/screens/Tictactoe'
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Counterdowntimer" component={Countdowntimer} />
       <Stack.Screen name="DigitalWatch" component={DigitalWatch} />
+      <Stack.Screen name="Tictactoe" component={Tictactoe} />
     </Stack.Navigator>
   </NavigationContainer>
   )

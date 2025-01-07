@@ -20,6 +20,12 @@ const Home = ({ navigation }) => {
         onPress={() => navigation.navigate('DigitalWatch')}>
         <Text style={styles.buttonText}>Go to Digital Watch</Text>
       </TouchableOpacity>
+    
+     <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Tictactoe')}>
+        <Text style={styles.buttonText}>Go to Tictactoe</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
